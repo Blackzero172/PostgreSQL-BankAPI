@@ -5,11 +5,7 @@ const pool = new Pool({
 	database: process.env.PGDATABASE,
 	password: process.env.PGPASSWORD,
 });
-pool
-	.connect()
-	.then(() => {
-		console.log("Connected to DB");
-	})
-	.catch((e) => {
-		console.log("DB Connection Failed");
-	});
+
+module.exports = {
+	query: (text, params) => pool.query(text, params),
+};
